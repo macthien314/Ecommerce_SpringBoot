@@ -176,4 +176,16 @@ public class ProductServiceImpl implements ProductService {
         }
         return productDtoList;
     }
+
+    /*Customer*/
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productRepository.getAllProducts();
+    }
+
+    @Override
+    public List<Product> listViewProducts() {
+        return productRepository.listViewProducts();
+    }
 }
