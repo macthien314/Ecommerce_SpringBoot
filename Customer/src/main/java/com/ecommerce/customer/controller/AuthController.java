@@ -1,6 +1,8 @@
 package com.ecommerce.customer.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -9,5 +11,11 @@ public class AuthController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login() {
         return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(Model model) {
+//        model.addAttribute("customerDto", new CustomerDto());
+        return "register";
     }
 }
