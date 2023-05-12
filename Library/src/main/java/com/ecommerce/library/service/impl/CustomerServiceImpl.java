@@ -12,6 +12,7 @@ import java.util.Arrays;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
+
     @Autowired
     private RoleRepository repository;
 
@@ -20,6 +21,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto save(CustomerDto customerDto) {
+
         Customer customer = new Customer();
         customer.setFirstName(customerDto.getFirstName());
         customer.setLastName(customerDto.getLastName());
@@ -31,6 +33,21 @@ public class CustomerServiceImpl implements CustomerService {
         return mapperDTO(customerSave);
     }
 
+    @Override
+    public Customer findByUsername(String username) {
+        return customerRepository.findByUsername(username);
+    }
+
+    @Override
+    public Customer saveInfor(Customer customer) {
+        Customer customer1 = customerRepository.findByUsername(customer.getUsername());
+        customer1.setAddress(customer.getAddress());
+        customer1.setCity(customer.getCity());
+        customer1.setCountry(customer.getCountry());
+        customer1.setPhoneNumber(customer.getPhoneNumber());
+        return customerRepository.save(customer1);
+    }
+
     private CustomerDto mapperDTO(Customer customer){
         CustomerDto customerDto = new CustomerDto();
         customerDto.setFirstName(customer.getFirstName());
@@ -38,15 +55,5 @@ public class CustomerServiceImpl implements CustomerService {
         customerDto.setPassword(customer.getPassword());
         customerDto.setUsername(customer.getUsername());
         return customerDto;
-    }
-
-    @Override
-    public Customer findByUsername(String username) {
-        return null;
-    }
-
-    @Override
-    public Customer saveInfor(Customer customer) {
-        return null;
     }
 }

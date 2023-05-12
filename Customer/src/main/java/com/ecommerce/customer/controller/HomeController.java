@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
 import java.util.List;
+
 @Controller
 public class HomeController {
     @Autowired
@@ -33,8 +34,8 @@ public class HomeController {
         if(principal != null){
             session.setAttribute("username", principal.getName());
             Customer customer = customerService.findByUsername(principal.getName());
-//            ShoppingCart cart = customer.getShoppingCart();
-//            session.setAttribute("totalItems", cart.getTotalItems());
+            ShoppingCart cart = customer.getShoppingCart();
+            session.setAttribute("totalItems", cart.getTotalItems());
         }else{
             session.removeAttribute("username");
         }

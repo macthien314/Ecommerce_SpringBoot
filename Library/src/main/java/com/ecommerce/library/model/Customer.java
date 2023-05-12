@@ -36,9 +36,9 @@ public class Customer {
     @Column(name = "image", columnDefinition = "MEDIUMBLOB")
     private String image;
 
-    @ManyToOne (fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "city_id", referencedColumnName = "city_id")
-    private City city;
+    @Column(name = "city")
+    private String city;
+
     @OneToOne(mappedBy = "customer")
     private ShoppingCart shoppingCart;
     @OneToMany(mappedBy = "customer")
@@ -50,4 +50,3 @@ public class Customer {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Collection<Role> roles;
 }
-
